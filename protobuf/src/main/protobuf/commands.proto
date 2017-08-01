@@ -1,0 +1,38 @@
+syntax = "proto3";
+
+import "scalapb/scalapb.proto";
+
+package com.grandsys.inu.protos.storedq;
+
+message CreateStoredQuery {
+    option (scalapb.message).extends = "com.grandsys.inu.models.Command";
+    string title = 1;
+    repeated string tags = 2;
+}
+
+message MatchClause {
+    string query = 1;
+    string field = 2;
+}
+
+message SpanNearClause {
+    string query = 1;
+    string field = 2;
+    int32 slop = 3;
+    bool in_order = 4;
+}
+
+message AddClause {
+    option (scalapb.message).extends = "com.grandsys.inu.models.Command";
+    enum Occurrence {
+        MUST = 0;
+        MUST_NOT = 1;
+        SHOULD = 2;
+    }
+    string stored_query_id = 1;
+    Occurrence occurrence = 2;
+    oneof clause {
+        MatchClause match = 6;
+        SpanNearClause span_near = 7;
+    }
+}
