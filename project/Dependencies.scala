@@ -12,7 +12,15 @@ object Dependencies {
       val test  = "org.scalatest" %% "scalatest" % version.scalaTest % Test
       val check = "org.scalacheck" %% "scalacheck" % version.scalaCheck % Test
       val scalapbRuntime = "com.trueaccord.scalapb" %% "scalapb-runtime" % com.trueaccord.scalapb.compiler.Version.scalapbVersion % "protobuf"
+
+      lazy val grpc = new {
+          import com.trueaccord.scalapb.compiler.Version._
+          val netty = "io.grpc" % "grpc-netty" % grpcJavaVersion
+          val scalapbRuntime = "com.trueaccord.scalapb" %% "scalapb-runtime-grpc" % scalapbVersion
+        }
   }
+
+
 
   val protobufDependencies: Seq[ModuleID] = Seq(
     libs.test,

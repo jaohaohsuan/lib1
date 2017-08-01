@@ -10,8 +10,10 @@ lazy val protobuf = (project in file("protobuf")).
       scalapb.gen() -> (sourceManaged in Compile).value
     ),
     libraryDependencies ++= Seq(
-      libs.scalapbRuntime
-    )
+      libs.scalapbRuntime,
+      libs.grpc.netty,
+      libs.grpc.scalapbRuntime
+    ) ++ protobufDependencies
   ).
   configs(Test)
 
