@@ -11,6 +11,7 @@ object Dependencies {
   lazy val libs = new  {
       val test  = "org.scalatest" %% "scalatest" % version.scalaTest % Test
       val check = "org.scalacheck" %% "scalacheck" % version.scalaCheck % Test
+      val scalapbRuntime = "com.trueaccord.scalapb" %% "scalapb-runtime" % com.trueaccord.scalapb.compiler.Version.scalapbVersion % "protobuf"
   }
 
   val protobufDependencies: Seq[ModuleID] = Seq(
