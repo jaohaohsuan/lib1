@@ -7,7 +7,6 @@ object Settings {
 
   lazy val settings = Seq(
     organization := "com.grandsys",
-    version := "0.0.1" + sys.props.getOrElse("buildNumber", default="0-SNAPSHOT"),
     scalaVersion := "2.12.3",
     publishMavenStyle := true,
     publishArtifact in Test := false
