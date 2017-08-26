@@ -1,25 +1,14 @@
 syntax = "proto3";
 
 import "scalapb/scalapb.proto";
+import "storedQuery/models.proto";
 
-package com.grandsys.inu.protos.storedq;
+package com.grandsys.inu.protos.storedQuery;
+
 
 message CreateStoredQuery {
-    option (scalapb.message).extends = "com.grandsys.inu.models.Command";
     string title = 1;
     repeated string tags = 2;
-}
-
-message MatchClause {
-    string query = 1;
-    string field = 2;
-}
-
-message SpanNearClause {
-    string query = 1;
-    string field = 2;
-    int32 slop = 3;
-    bool in_order = 4;
 }
 
 message AddClause {
@@ -34,5 +23,6 @@ message AddClause {
     oneof clause {
         MatchClause match = 6;
         SpanNearClause span_near = 7;
+        ReferenceClause reference = 8;
     }
 }

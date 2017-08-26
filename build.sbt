@@ -1,6 +1,4 @@
 import Dependencies._
-import Settings._
-
 
 version := "0.0.1"
 
@@ -8,9 +6,11 @@ lazy val protobuf = (project in file("protobuf")).
   settings(Settings.settings: _*).
   settings(Settings.protobufSettings: _*).
   settings(
-
+    scalacOptions in ThisBuild ++= Seq("-unchecked", "-deprecation"),
     PB.targets in Compile := Seq(
-      scalapb.gen() -> (sourceManaged in Compile).value
+      scalapb.gen(
+        flatPackage = false
+      ) -> (sourceManaged in Compile).value
     ),
     libraryDependencies ++= Seq(
       libs.scalapbRuntime,
